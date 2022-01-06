@@ -8,8 +8,8 @@ Sentinel Dashboard与业务服务之间本身是可以互通获取最新限流�
 ### 改造方案
 ![sentinel-redis](https://user-images.githubusercontent.com/5134790/148348074-cb0c7be6-6e11-4c09-9d3e-34093a5e2866.png)
 
-* 代码
- `
+* 关键代码
+```bash
  private boolean publishApis(String app, String ip, Integer port) {
         List<ApiDefinitionEntity> apis = repository.findAllByMachine(MachineInfo.of(app, ip, port));
         // return sentinelApiClient.modifyApis(app, ip, port, apis);
@@ -17,4 +17,4 @@ Sentinel Dashboard与业务服务之间本身是可以互通获取最新限流�
         redisSenderClient.pubApiDefinition(app, ip, port, apis);
         return true;
     }
-`
+```
